@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:61:"D:\wamp\www\xy\public/../application/xyb\view\rbac\index.html";i:1562828833;s:52:"D:\wamp\www\xy\application\xyb\view\Public\head.html";i:1562752707;s:54:"D:\wamp\www\xy\application\xyb\view\Public\header.html";i:1562764151;s:55:"D:\wamp\www\xy\application\xyb\view\Public\sidebar.html";i:1562829167;s:59:"D:\wamp\www\xy\application\xyb\view\Public\breadcrumbs.html";i:1562753432;s:51:"D:\wamp\www\xy\application\xyb\view\Public\set.html";i:1562761888;s:54:"D:\wamp\www\xy\application\xyb\view\Public\footer.html";i:1562753509;s:56:"D:\wamp\www\xy\application\xyb\view\Public\footerjs.html";i:1562750898;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:77:"C:\phpStudy\PHPTutorial\WWW\xy\public/../application/xyb\view\menu\index.html";i:1562851523;s:68:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\head.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\header.html";i:1562847764;s:71:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\sidebar.html";i:1562847764;s:75:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\breadcrumbs.html";i:1562847764;s:67:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\set.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footer.html";i:1562847764;s:72:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footerjs.html";i:1562847764;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -401,6 +401,37 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-pencil-square-o"></i>
+                    <span class="menu-text"> 菜单管理 </span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?php echo url('menu/index'); ?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                           菜单列表
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?php echo url('menu/add'); ?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            添加菜单
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
         </ul><!-- /.nav-list -->
 
         <!-- #section:basics/sidebar.layout.minimize -->
@@ -538,51 +569,30 @@
                             <div class="col-xs-12">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a>角色管理</a></li>
-                                        <li><a href="<?php echo url('rbac/role_add'); ?>">添加角色</a></li>
+                                        <li class="active"><a>菜单列表</a></li>
+                                        <li><a href="<?php echo url('menu/add'); ?>">添加菜单</a></li>
                                     </ul>
                                     <div style="margin-top: 20px;"></div>
-                                    <form action="/admin/rbac/listorders.html" method="post" class="margin-top-20">
-                                        <table class="table table-hover table-bordered">
+                                    <form class="js-ajax-form" action="{:url('Menu/listOrder')}" method="post">
+                                        <div class="table-actions">
+                                            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit">排序</button>
+                                        </div>
+                                        <table class="table table-hover table-bordered table-list" id="menus-table">
                                             <thead>
                                             <tr>
-                                                <th width="40">ID</th>
-                                                <th align="left">角色名称</th>
-                                                <th align="left">角色描述</th>
-                                                <th width="60" align="left">状态</th>
-                                                <th width="160">操作</th>
+                                                <th width="80">排序</th>
+                                                <th width="50">ID</th>
+                                                <th>菜单名称</th>
+                                                <th>操作</th>
+                                                <th width="80">状态</th>
+                                                <th width="180">操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <?php if(is_array($roles) || $roles instanceof \think\Collection || $roles instanceof \think\Paginator): if( count($roles)==0 ) : echo "" ;else: foreach($roles as $key=>$v): ?>
-                                                <tr>
-                                                    <td><?php echo $v['id']; ?></td>
-                                                    <td><?php echo $v['name']; ?></td>
-                                                    <td><?php echo $v['remark']; ?></td>
-                                                    <td>
-                                                        <?php if($v['status'] == 1): ?>
-                                                            <font color="red">√</font>
-                                                            <?php else: ?>
-                                                            <font color="red">╳</font>
-                                                        <?php endif; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php if($v['id'] == 1): ?>
-                                                            <font color="#cccccc">配置权限</font>  <!-- <a href="javascript:openIframeDialog('{:url('rbac/member',array('id'=>$vo['id']))}','成员管理');">成员管理</a> | -->
-                                                            <font color="#cccccc">编辑</font>  <font color="#cccccc">删除</font>
-                                                            <?php else: ?>
-                                                            <a href="{:url('Rbac/authorize',array('id'=>$v['id']))}">配置权限</a>
-                                                            <!-- <a href="javascript:openIframeDialog('{:url('rbac/member',array('id'=>$vo['id']))}','成员管理');">成员管理</a>| -->
-                                                            <a href="{:url('Rbac/roleedit',array('id'=>$v['id']))}">编辑</a>
-                                                            <a class="js-ajax-delete" href="{:url('Rbac/roledelete',array('id'=>$v['id']))}">删除</a>
-                                                         <?php endif; ?>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                                            <?php echo $category; ?>
                                             </tbody>
                                         </table>
                                     </form>
-
                                     <!-- /.tab-content -->
                                 </div><!-- /.tabbable -->
                             </div><!-- /.col -->

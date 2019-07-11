@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:62:"D:\wamp\www\xy\public/../application/xyb\view\index\index.html";i:1562764036;s:52:"D:\wamp\www\xy\application\xyb\view\Public\head.html";i:1562752707;s:54:"D:\wamp\www\xy\application\xyb\view\Public\header.html";i:1562764151;s:55:"D:\wamp\www\xy\application\xyb\view\Public\sidebar.html";i:1562829167;s:59:"D:\wamp\www\xy\application\xyb\view\Public\breadcrumbs.html";i:1562753432;s:51:"D:\wamp\www\xy\application\xyb\view\Public\set.html";i:1562761888;s:54:"D:\wamp\www\xy\application\xyb\view\Public\footer.html";i:1562753509;s:56:"D:\wamp\www\xy\application\xyb\view\Public\footerjs.html";i:1562750898;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:80:"C:\phpStudy\PHPTutorial\WWW\xy\public/../application/xyb\view\rbac\role_add.html";i:1562847764;s:68:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\head.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\header.html";i:1562847764;s:71:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\sidebar.html";i:1562847764;s:75:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\breadcrumbs.html";i:1562847764;s:67:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\set.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footer.html";i:1562847764;s:72:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footerjs.html";i:1562847764;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -401,6 +401,37 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-pencil-square-o"></i>
+                    <span class="menu-text"> 菜单管理 </span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?php echo url('menu/index'); ?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                           菜单列表
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?php echo url('menu/add'); ?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            添加菜单
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
         </ul><!-- /.nav-list -->
 
         <!-- #section:basics/sidebar.layout.minimize -->
@@ -537,25 +568,44 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="tabbable">
-
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                红花山小学简介
-                                            </h3>
+                                    <ul class="nav nav-tabs">
+                                        <li ><a href="<?php echo url('rbac/index'); ?>">角色管理</a></li>
+                                        <li class="active"><a >添加角色</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="form-horizontal margin-top-20" action="<?php echo url('rbac/role_add_post'); ?>" method="post">
+                                        <div class="form-group">
+                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>角色名称</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-name" name="name">
+                                            </div>
                                         </div>
-                                        <div class="panel-body">
-                                            深圳市光明新区红花山小学为2016年新建的公办小学，学校位于公明街道富利北路与松白公路交汇处，位于公明核心商圈，毗邻中粮云景国际小区。学校占地面积10500平方米，建筑面积12500平方米，办学规模为24个教学班，学生人数约1200人，2016年秋季开始招收一年级新生四个教学班约200人。 学校按照现代化学校高标准规划建设，设施设备齐全，配有多功能报告厅、图书馆、音乐室、美术室、舞蹈室、体育馆、科技创新实验室、语音室、200米跑道运动操场等，可满足多元化、个性化教育教学需要。
+                                        <div class="form-group">
+                                            <label for="input-remark" class="col-sm-2 control-label">角色描述</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <textarea type="text" class="form-control" id="input-remark" name="remark"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">状态</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="status" value="1"> 开启                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="status" value="0"> 禁用                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-primary js-ajax-submit">添加</button>
+                                            </div>
+                                        </div>
+                                    </form>
 
-                                   <!-- /.tab-content -->
+                                    <!-- /.tab-content -->
                                 </div><!-- /.tabbable -->
                             </div><!-- /.col -->
                         </div><!-- /.row -->
-
-
-
 
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->

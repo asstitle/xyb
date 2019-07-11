@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:61:"D:\wamp\www\xy\public/../application/xyb\view\user\index.html";i:1562838118;s:52:"D:\wamp\www\xy\application\xyb\view\Public\head.html";i:1562752707;s:54:"D:\wamp\www\xy\application\xyb\view\Public\header.html";i:1562764151;s:55:"D:\wamp\www\xy\application\xyb\view\Public\sidebar.html";i:1562838596;s:59:"D:\wamp\www\xy\application\xyb\view\Public\breadcrumbs.html";i:1562753432;s:51:"D:\wamp\www\xy\application\xyb\view\Public\set.html";i:1562761888;s:54:"D:\wamp\www\xy\application\xyb\view\Public\footer.html";i:1562753509;s:56:"D:\wamp\www\xy\application\xyb\view\Public\footerjs.html";i:1562750898;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:75:"C:\phpStudy\PHPTutorial\WWW\xy\public/../application/xyb\view\menu\add.html";i:1562852276;s:68:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\head.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\header.html";i:1562847764;s:71:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\sidebar.html";i:1562847764;s:75:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\breadcrumbs.html";i:1562847764;s:67:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\set.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footer.html";i:1562847764;s:72:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footerjs.html";i:1562847764;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -569,62 +569,97 @@
                             <div class="col-xs-12">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a>用户列表</a></li>
-                                        <li><a href="<?php echo url('user/add_user'); ?>">添加用户</a></li>
+                                        <li ><a href="<?php echo url('menu/index'); ?>">菜单列表</a></li>
+                                        <li class="active"><a >添加菜单</a></li>
                                     </ul>
                                     <div style="margin-top: 20px;"></div>
-                                    <form action="" method="post" class="margin-top-20">
-                                        <table class="table table-hover table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th width="40">ID</th>
-                                                <th align="left">用户名</th>
-                                                <th align="left">性别</th>
-                                                <th align="left">电话</th>
-                                                <th align="left">状态</th>
-                                                <th align="left">最近登录</th>
-                                                <th width="160">操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                             <?php if(is_array($info) || $info instanceof \think\Collection || $info instanceof \think\Paginator): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$i): $mod = ($i % 2 );++$i;?>
-                                                 <tr>
-                                                     <td><?php echo $i['id']; ?></td>
-                                                     <td><?php echo $i['user_login']; ?></td>
-                                                     <td>
-                                                         <?php if($i['sex'] == 1): ?>
-                                                         <span style="color: green">男</span>
-                                                         <?php else: ?>
-                                                         <span style="color: green">女</span>
-                                                         <?php endif; ?>
-                                                         </td>
-                                                     <td><?php echo $i['mobile']; ?></td>
-                                                     <td>
-                                                         <?php if($i['user_status'] == 1): ?>
-                                                         <span style="color: green">在职</span>
-                                                         <?php else: ?>
-                                                         <span style="color: red">离职</span>
-                                                         <?php endif; ?>
-                                                     </td>
-                                                     <td>
-                                                         <?php if($i['last_login_time']): ?>
-                                                         <?php echo date('Y-m-d H:i',$i['last_login_time']); else: ?>
-                                                         暂未登录
-                                                         <?php endif; ?>
-                                                     </td>
-                                                     <td><a>编辑</a></td>
-                                                 </tr>
-                                             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-                                            </tbody>
-                                        </table>
+                                    <form method="post" class="form-horizontal margin-top-20" action="<?php echo url('menu/addPost'); ?>">
+                                        <div class="form-group">
+                                            <label for="input-parent_id" class="col-sm-2 control-label"><span class="form-required">*</span>上级</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <select class="form-control" name="parent_id" id="input-parent_id">
+                                                    <option value="0">作为一级菜单</option>
+                                                    <?php echo $select_category; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-name" class="col-sm-2 control-label"><span class="form-required">*</span>名称</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-name" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-app" class="col-sm-2 control-label"><span class="form-required">*</span>应用</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-app" name="app">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-controller" class="col-sm-2 control-label"><span class="form-required">*</span>控制器</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-controller" name="controller">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-action" class="col-sm-2 control-label"><span class="form-required">*</span>方法</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-action" name="action">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-param" class="col-sm-2 control-label">参数</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-param" name="param">
+                                                <p class="help-block">例:id=3&amp;p=3</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-icon" class="col-sm-2 control-label">图标</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <input type="text" class="form-control" id="input-icon" name="icon">
+                                                <p class="help-block">
+                                                    <a href="http://www.thinkcmf.com/font/font_awesome/icons.html" target="_blank">选择图标</a> 不带前缀fa-，如fa-user => user
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-remark" class="col-sm-2 control-label">备注</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <textarea class="form-control" id="input-remark" name="remark"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-status" class="col-sm-2 control-label">状态</label>
+                                            <div class="col-md-6 col-sm-10" id="input-status">
+                                                <select class="form-control" name="status">
+                                                    <option value="1">在左侧菜单显示</option>
+                                                    <option value="0">在左侧菜单隐藏</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-type" class="col-sm-2 control-label">类型</label>
+                                            <div class="col-md-6 col-sm-10">
+                                                <select class="form-control" name="type" id="input-type">
+                                                    <option value="1">有界面可访问菜单</option>
+                                                    <option value="2">无界面可访问菜单</option>
+                                                    <option value="0">只作为菜单</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-primary js-ajax-submit">添加</button>
+                                            </div>
+                                        </div>
                                     </form>
 
                                     <!-- /.tab-content -->
                                 </div><!-- /.tabbable -->
                             </div><!-- /.col -->
                         </div><!-- /.row -->
-                        <?php echo $page; ?>
+
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->

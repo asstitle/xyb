@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:64:"D:\wamp\www\xy\public/../application/xyb\view\user\add_user.html";i:1562837179;s:52:"D:\wamp\www\xy\application\xyb\view\Public\head.html";i:1562752707;s:54:"D:\wamp\www\xy\application\xyb\view\Public\header.html";i:1562764151;s:55:"D:\wamp\www\xy\application\xyb\view\Public\sidebar.html";i:1562838596;s:59:"D:\wamp\www\xy\application\xyb\view\Public\breadcrumbs.html";i:1562753432;s:51:"D:\wamp\www\xy\application\xyb\view\Public\set.html";i:1562761888;s:54:"D:\wamp\www\xy\application\xyb\view\Public\footer.html";i:1562753509;s:56:"D:\wamp\www\xy\application\xyb\view\Public\footerjs.html";i:1562750898;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:77:"C:\phpStudy\PHPTutorial\WWW\xy\public/../application/xyb\view\rbac\index.html";i:1562847764;s:68:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\head.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\header.html";i:1562847764;s:71:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\sidebar.html";i:1562847764;s:75:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\breadcrumbs.html";i:1562847764;s:67:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\set.html";i:1562847764;s:70:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footer.html";i:1562847764;s:72:"C:\phpStudy\PHPTutorial\WWW\xy\application\xyb\view\Public\footerjs.html";i:1562847764;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -569,63 +569,49 @@
                             <div class="col-xs-12">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs">
-                                        <li ><a href="<?php echo url('user/index'); ?>">用户管理</a></li>
-                                        <li class="active"><a >添加用户</a></li>
+                                        <li class="active"><a>角色管理</a></li>
+                                        <li><a href="<?php echo url('rbac/role_add'); ?>">添加角色</a></li>
                                     </ul>
                                     <div style="margin-top: 20px;"></div>
-                                    <form class="form-horizontal margin-top-20" action="<?php echo url('user/add_user_post'); ?>" method="post">
-                                        <div class="form-group">
-                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>用户名</label>
-                                            <div class="col-md-6 col-sm-10">
-                                                <input type="text" class="form-control" id="input-name" name="user_login">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>密码</label>
-                                            <div class="col-md-6 col-sm-10">
-                                                <input type="text" class="form-control" id="input-name" name="user_pass">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>手机</label>
-                                            <div class="col-md-6 col-sm-10">
-                                                <input type="text" class="form-control" id="input-name" name="mobile">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">性别</label>
-                                            <div class="col-md-6 col-sm-10">
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="sex" value="1" checked> 男                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="sex" value="0"> 女                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">在职</label>
-                                            <div class="col-md-6 col-sm-10">
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="user_status" value="1" checked> 是                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="user_status" value="0"> 否               </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label"><span style="color:red">*</span>角色</label>
-                                            <div class="col-md-6 col-sm-10">
-                                                <?php if(is_array($roles) || $roles instanceof \think\Collection || $roles instanceof \think\Paginator): if( count($roles)==0 ) : echo "" ;else: foreach($roles as $key=>$vo): ?>
-                                                    <label class="checkbox-inline">
-                                                        <input value="<?php echo $vo['id']; ?>" type="checkbox" name="role_id[]" ><?php echo $vo['name']; ?>
-                                                    </label>
-                                                <?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-primary">添加</button>
-                                            </div>
-                                        </div>
+                                    <form action="/admin/rbac/listorders.html" method="post" class="margin-top-20">
+                                        <table class="table table-hover table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th width="40">ID</th>
+                                                <th align="left">角色名称</th>
+                                                <th align="left">角色描述</th>
+                                                <th width="60" align="left">状态</th>
+                                                <th width="160">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php if(is_array($roles) || $roles instanceof \think\Collection || $roles instanceof \think\Paginator): if( count($roles)==0 ) : echo "" ;else: foreach($roles as $key=>$v): ?>
+                                                <tr>
+                                                    <td><?php echo $v['id']; ?></td>
+                                                    <td><?php echo $v['name']; ?></td>
+                                                    <td><?php echo $v['remark']; ?></td>
+                                                    <td>
+                                                        <?php if($v['status'] == 1): ?>
+                                                            <font color="red">√</font>
+                                                            <?php else: ?>
+                                                            <font color="red">╳</font>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if($v['id'] == 1): ?>
+                                                            <font color="#cccccc">配置权限</font>  <!-- <a href="javascript:openIframeDialog('{:url('rbac/member',array('id'=>$vo['id']))}','成员管理');">成员管理</a> | -->
+                                                            <font color="#cccccc">编辑</font>  <font color="#cccccc">删除</font>
+                                                            <?php else: ?>
+                                                            <a href="{:url('Rbac/authorize',array('id'=>$v['id']))}">配置权限</a>
+                                                            <!-- <a href="javascript:openIframeDialog('{:url('rbac/member',array('id'=>$vo['id']))}','成员管理');">成员管理</a>| -->
+                                                            <a href="{:url('Rbac/roleedit',array('id'=>$v['id']))}">编辑</a>
+                                                            <a class="js-ajax-delete" href="{:url('Rbac/roledelete',array('id'=>$v['id']))}">删除</a>
+                                                         <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </tbody>
+                                        </table>
                                     </form>
 
                                     <!-- /.tab-content -->
